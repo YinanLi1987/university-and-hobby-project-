@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>CourseSystem</title>
+</head>
+<body>
+    <div>
+        <header>
+            <h1>COURSE MANAGEMENT SYSTEM</h1>
+        </header> 
+    </div>
+
+    <div class="userbar">
+        <a href="#"  id="login">Log in</a>
+        <a href="#" id="sign">Sign in</a>
+    </div>
+
+    <div id="slogen">
+        <h1>WELCOME</h1>
+    </div>
+
+    <div id="loginPart">
+        <div class="loginForm">
+            <form  action="">
+                <h3>Log in</h3>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="email"> 
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="password">
+                <input type="submit" value="Log in">
+                <input type="button" id="cancel1" value="Cancel">
+            </form>
+        </div>
+    </div>
+    <div>
+        <div id="signPart">
+            <div class="signForm">
+                 <form action="">
+                    <h3>Sign in</h3>
+                    <label for="fname">First name</label>
+                    <input type="text" id="fname" placeholder="First name">
+                    <label for="mname">Middle name</label>
+                    <input type="text" id="mname" placeholder="Middle name">
+                    <label for="lname">Last name</label>
+                    <input type="text" id="lname" placeholder="Last name">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="email"> 
+                    <label for="phone">Phone</label>
+                    <input type="number" id="phone" placeholder="Phone number">
+                    <label for="userType">User type</label>
+                    <select name="userType" id="userType">
+                        <option value="teacher">Teacher</option>
+                        <option value="student">Student</option>
+                    </select>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password">
+                    <label for="passwordConfirm">Password confirm</label>
+                    <input type="password" id="passwordConfirm" placeholder="Password Confirm">
+                    <input type="submit" value="Sign in">
+                    <input type="button" id="cancel2" value="Cancel">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <footer>
+            <a href="http://">OAMK.fi</a>
+            <a href="http://">Oiva</a>
+            <a href="http://">Peppi</a>
+            <a href="http://">Library</a>
+            <a href="http://">Help</a>
+        </footer>
+    </div>
+
+<script>
+    document.getElementById("login").addEventListener("click",function(){
+        document.querySelector("#loginPart").style.display="flex";
+    });
+    document.getElementById("cancel1").addEventListener("click",function(){
+        document.querySelector("#loginPart").style.display="none";
+    })
+    document.getElementById("sign").addEventListener("click",function(){
+        document.querySelector("#signPart").style.display="flex";
+    });
+    document.getElementById("cancel2").addEventListener("click",function(){
+        document.querySelector("#signPart").style.display="none";
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="teacher_home.css">
+    <title>Course System</title>
+</head>
+<body>
+    <div>
+        <header>
+            <h1>COURSE MANAGEMENT SYSTEM</h1>
+        </header> 
+    </div>
+    <div class="userbar">
+        <a href="#" id="createCourse">Create a Course</a>
+        <a href="#" id="message">Message</a>
+        <a href="#" id="user">User name</a>
+    </div>
+    <div id="editInfo">
+        <div class="editInformation">
+            
+            <form action="">
+                <h3>Edit your information</h3>
+                <label for="fname">First name</label>
+                <input type="text" id="fname" placeholder="First name">
+                <label for="mname">Middle name</label>
+                <input type="text" id="mname" placeholder="Middle name">
+                <label for="lname">Last name</label>
+                <input type="text" id="lname" placeholder="Last name">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="email"> 
+                <label for="phone">Phone</label>
+                <input type="number" id="phone" placeholder="Phone number">
+                <label for="userType">User type</label>
+                <select name="userType" id="userType">
+                    <option value="teacher">Teacher</option>
+                    <option value="student">Student</option>
+                </select>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password">
+                <label for="passwordConfirm">Password confirm</label>
+                <input type="password" id="passwordConfirm" placeholder="Password Confirm">
+                <input type="submit" value="Save">
+                <input type="button" id="cancel3" value="Cancel">
+            </form>
+        </div>
+    </div>
+    <div id="create">
+        <div class="course">
+            <form action="">
+               <h3>Create a new course</h3>
+               <label for="courseName">Course Name</label>
+               <input type="text" id="courseName">
+               <label for="content">Content</label>
+               <input type="textarea" id="content">
+               <label for="credits">Credits</label>
+               <input type="text" id="credits">
+               <label for="courses">Number of courses</label>
+               <input type="number" id="courses">
+               <label for="exam">Exam</label>
+               <input type="date" id="exam">
+               <input type="submit" value="Create">
+               <input type="button" id="cancel4" value="Cancel">
+            </form>
+        </div>
+    </div>
+
+
+    <div>
+        <table>
+           <tr>
+               <th>Course</th>
+               <th>Introduction</th>
+               <th>Track</th>
+           </tr>
+           <tr>
+               <td><img src="" alt="photo"></td>
+               <td><ul>
+                   <li>Course 01</li>
+                   <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam iusto totam eveniet ratione sit corporis tempore perferendis necessitatibus adipisci libero!</li>
+                   <li>5op</li>
+               </ul>
+            </td>
+               <td><button>TRACK</button></td>
+           </tr>
+           <tr>
+            <td><img src="" alt="photo"></td>
+            <td><ul>
+                <li>Course 02</li>
+                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam iusto totam eveniet ratione sit corporis tempore perferendis necessitatibus adipisci libero!</li>
+                <li>5op</li>
+            </ul>
+         </td>
+            <td><button>TRACK</button></td>
+        </tr>
+        <tr>
+            <td><img src="" alt="photo"></td>
+            <td><ul>
+                <li>Course 03</li>
+                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam iusto totam eveniet ratione sit corporis tempore perferendis necessitatibus adipisci libero!</li>
+                <li>5op</li>
+            </ul>
+         </td>
+            <td><button>TRACK</button></td>
+        </tr>
+        </table>
+    </div>
+
+    <div>
+        <footer>
+            <a href="http://">OAMK.fi</a>
+            <a href="http://">Oiva</a>
+            <a href="http://">Peppi</a>
+            <a href="http://">Library</a>
+            <a href="http://">Help</a>
+        </footer>
+    </div>
+    <script>
+        document.getElementById("user").addEventListener("click",function(){
+            document.querySelector("#editInfo").style.display="flex";
+    });
+        document.getElementById("cancel3").addEventListener("click",function(){
+            document.querySelector("#editInfo").style.display="none";
+    })
+
+    document.getElementById("createCourse").addEventListener("click",function(){
+            document.querySelector("#create").style.display="flex";
+    });
+        document.getElementById("cancel4").addEventListener("click",function(){
+            document.querySelector("#create").style.display="none";
+    })
+    </script>
+</body>
+</html>

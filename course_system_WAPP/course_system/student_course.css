@@ -1,0 +1,43 @@
+body{ 
+    padding: 0px;
+    margin: 0px;
+    background-color:white;
+} 
+header{ 
+    display: block;
+    background-color: #00BFB2;
+    color:white;
+    font-size:14px;
+    text-align: center;  
+} 
+.userbar { 
+    display: flex; 
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color:white;    
+}
+.userbar a,p{ 
+    display:block;
+    margin: 10px;
+    color:#00BFB2; 
+}
+
+table {
+    display: block;
+    border: #00BFB2 solid 1px ;
+    margin: 100px 50px 100px 50px;
+    column-gap: 20px;
+    text-align: center;
+  
+
+}
+
+footer{ 
+    display: flex;
+    margin-top: 100px;
+    flex-direction: row;
+    justify-content:space-around;
+   }
+   footer a{ 
+    color:#00BFB2;   
+   }

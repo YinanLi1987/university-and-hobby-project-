@@ -1,0 +1,120 @@
+body{ 
+    padding: 0px;
+    margin: 0px;
+    background-color:white;
+} 
+header{ 
+    display: block;
+    background-color: #00BFB2;
+    color:white;
+    font-size:14px;
+    text-align: center;  
+} 
+.userbar { 
+    display: flex; 
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color:white;    
+}
+.userbar a{ 
+    display:block;
+    margin: 10px;
+    color:#00BFB2; 
+}
+#slogen{ 
+    display:block;
+    height: 200px;
+    width: 350px;
+    margin-left:250px;
+    margin: right 250px;
+    border-radius: 15px;
+    background-color:#00BFB2;
+    text-align: center;
+    }
+#slogen h1{ 
+    color:white;
+    padding-top: 80px;
+}
+footer{ 
+ display: flex;
+ margin-top: 100px;
+ flex-direction: row;
+ justify-content:space-around;
+}
+footer a{ 
+ color:#00BFB2;   
+}
+#loginPart{ 
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    top: 0;
+   
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+    display:none;
+}
+.loginForm{ 
+    width: 300px;
+    height: 300px;
+    background-color:white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+    color:#00BFB2;
+   }
+.loginForm form{ 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.loginForm form h3{ 
+  display:block;
+  background-color:#00BFB2;
+  color:white;
+}
+.loginForm form label{ 
+  align-self: flex-start;
+}
+.loginForm form input{ 
+    border: 1px solid #00BFB2;
+}
+#signPart{ 
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    top: 0;
+   
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+    display:none;
+}
+.signForm{ 
+    width: 300px;
+    height: 600px;
+    background-color:white;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+    color:#00BFB2;
+   }
+.signForm form{ 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.signForm form h3{ 
+  display:block;
+  background-color:#00BFB2;
+  color:white;
+}
+.signForm form label{ 
+  align-self: flex-start;
+}
+.signForm form input,select{ 
+    border: 1px solid #00BFB2;
+}
