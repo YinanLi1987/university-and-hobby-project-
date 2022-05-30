@@ -39,25 +39,23 @@
     <div>
         <div id="signPart">
             <div class="signForm">
-                 <form action="">
+                 <form action="/submit" method="POST">
                     <h3>Sign in</h3>
                     <label for="fname">First name</label>
-                    <input type="text" id="fname" placeholder="First name">
-                    <label for="mname">Middle name</label>
-                    <input type="text" id="mname" placeholder="Middle name">
+                    <input type="text" id="fname" placeholder="First name" required name="fname">
                     <label for="lname">Last name</label>
-                    <input type="text" id="lname" placeholder="Last name">
+                    <input type="text" id="lname" placeholder="Last name" required name="lname">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="email"> 
+                    <input type="email" id="email" placeholder="email" required name="email"> 
                     <label for="phone">Phone</label>
-                    <input type="number" id="phone" placeholder="Phone number">
+                    <input type="number" id="phone" placeholder="Phone number" required name="phoneNumber">
                     <label for="userType">User type</label>
-                    <select name="userType" id="userType">
+                    <select name="userType" id="userType" required name="userType">
                         <option value="teacher">Teacher</option>
                         <option value="student">Student</option>
                     </select>
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Password">
+                    <input type="password" id="password" placeholder="Password" required name="password">
                     <label for="passwordConfirm">Password confirm</label>
                     <input type="password" id="passwordConfirm" placeholder="Password Confirm">
                     <input type="submit" value="Sign in">
