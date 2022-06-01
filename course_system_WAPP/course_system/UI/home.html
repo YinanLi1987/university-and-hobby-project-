@@ -25,12 +25,12 @@
 
     <div id="loginPart">
         <div class="loginForm">
-            <form  action="">
+            <form  action="/login" method="POST">
                 <h3>Log in</h3>
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="email"> 
+                <input type="email" id="Email" placeholder="email" required name="Email"> 
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="password">
+                <input type="password" id="Password" placeholder="password" required name="Password">
                 <input type="submit" value="Log in">
                 <input type="button" id="cancel1" value="Cancel">
             </form>

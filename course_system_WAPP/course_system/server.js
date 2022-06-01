@@ -12,11 +12,35 @@ app.use(express.json());
 app.get("/fruits", (req, res, next) => {
     res.json(["Banana","Apple","Kiwi"]);
     });
-// get home page
+// get each page
 app.get("/", function(req, res) {
         res.sendFile(path.join(__dirname, "UI/home.html"));
     });
 app.use('/', serveStatic(path.join(__dirname, 'UI')));
+
+app.get("/teacher_home", function(req, res) {
+    res.sendFile(path.join(__dirname, "UI/teacher_home.html"));
+});
+app.use('/teacher_home', serveStatic(path.join(__dirname, 'UI')));
+
+app.get("/teacher_course", function(req, res) {
+    res.sendFile(path.join(__dirname, "UI/teacher_course.html"));
+});
+app.use('/teacher_course', serveStatic(path.join(__dirname, 'UI')));
+
+app.get("/student_home", function(req, res) {
+    res.sendFile(path.join(__dirname, "UI/student_home.html"));
+});
+app.use('/student_home', serveStatic(path.join(__dirname, 'UI')));
+
+app.get("/student_course", function(req, res) {
+    res.sendFile(path.join(__dirname, "UI/student_course.html"));
+});
+app.use('/student_course', serveStatic(path.join(__dirname, 'UI')));
+
+
+
+
 // get data from table usrInfo
 app.get('/db', async (req, res) => {
     const { Pool } = require('pg');
@@ -65,7 +89,7 @@ app.post('/submit', async (req, res) => {
             res.json({ error: err });
         }
       });
-// validate login status
+//log in validate and redirect to target page
 app.post('/login', async (req, res) => {
     const { Pool } = require('pg');
     const pool = (() => {
@@ -76,31 +100,45 @@ app.post('/login', async (req, res) => {
             }
         }); 
     })();
-const {Email, Password} = req.body;
-const client = await pool.connect();
-const user = await client.query('SELECT email, password FROM usrInfo WHERE email=$1;',[Email])
-const loginUser = (user) ? user.rows : null;
+  // find out the user exist or not
+  const {Email, Password} = req.body;
+  const client = await pool.connect();
+  const user = await client.query('SELECT fname,email,userType, password FROM usrInfo WHERE email=$1;',[Email])
+  const loginUser = (user) ? user.rows : null;
+  
+  // compare the password
+  try {
+      if(await bcrypt.compare(req.body.Password, loginUser[0].password) ){
+       
+        if (loginUser[0].usertype=="teacher"){
+            
+            res.redirect('/teacher_home');
+           
+            document.getElementById("user").value = loginUser[0].fname;
 
-//------------this following 3 line3 of code does not work as expected-------------------
-if (loginUser==null) {
-    return res.status(400).send('Incorrect username or password')
-}
-// compare the password
-try {
-    if(await bcrypt.compare(req.body.Password, loginUser[0].password)) {
-        client.query('INSERT INTO loginInfo VALUES ($1);',[Email])
-        res.send('Logged in successfully');
-    } else {
-        res.send('Incorrect username or password')
+          } 
+          else if (loginUser[0].usertype=="student"){
+            res.redirect('/student_home');
+           
+          }
+      } else {
+          res.send('Incorrect username or password')
+        }
+      client.release();
+  } catch (err) {
+      console.error(err);
+      res.json({ error: err });
       }
-    client.release();
-} catch (err) {
-    console.error(err);
-    res.json({ error: err });
-    }
-  });
+    });
+   
 
 
+
+
+
+
+
+  
 
 
 
