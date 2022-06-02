@@ -16,7 +16,7 @@
     <div class="userbar">
         <a href="#" id="createCourse">Create a Course</a>
         <a href="#" id="message">Message</a>
-        <a href="#" id="user" >User name</a>
+        <a href="#" id="user" >  </a>
     </div>
     <div id="editInfo">
         <div class="editInformation">
@@ -49,18 +49,18 @@
     </div>
     <div id="create">
         <div class="course">
-            <form action="">
+            <form action="/create" method="POST">
                <h3>Create a new course</h3>
                <label for="courseName">Course Name</label>
-               <input type="text" id="courseName">
+               <input type="text" id="courseName" required name="courseName">
                <label for="content">Content</label>
-               <input type="textarea" id="content">
+               <input type="textarea" id="content" required name="courseContent">
                <label for="credits">Credits</label>
-               <input type="text" id="credits">
-               <label for="courses">Number of courses</label>
-               <input type="number" id="courses">
-               <label for="exam">Exam</label>
-               <input type="date" id="exam">
+               <input type="text" id="credits" required name="credits">
+               <label for="courses">Number of lectures</label>
+               <input type="number" id="courses" required name="numberOfLectures">
+               <label for="exam">Exam Date</label>
+               <input type="date" id="exam" required name="examDate">
                <input type="submit" value="Create">
                <input type="button" id="cancel4" value="Cancel">
             </form>
@@ -118,6 +118,8 @@
         </footer>
     </div>
     <script>
+       
+
         document.getElementById("user").addEventListener("click",function(){
             document.querySelector("#editInfo").style.display="flex";
     });

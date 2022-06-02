@@ -8,6 +8,7 @@ const passport = require('passport');
 const BasicStrategy= require('passport-http').BasicStrategy;
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json());
+app.set('view engine', 'ejs')
 // test
 app.get("/fruits", (req, res, next) => {
     res.json(["Banana","Apple","Kiwi"]);
@@ -19,6 +20,7 @@ app.get("/", function(req, res) {
 app.use('/', serveStatic(path.join(__dirname, 'UI')));
 
 app.get("/teacher_home", function(req, res) {
+    
     res.sendFile(path.join(__dirname, "UI/teacher_home.html"));
 });
 app.use('/teacher_home', serveStatic(path.join(__dirname, 'UI')));
@@ -111,27 +113,44 @@ app.post('/login', async (req, res) => {
       if(await bcrypt.compare(req.body.Password, loginUser[0].password) ){
        
         if (loginUser[0].usertype=="teacher"){
-            
             res.redirect('/teacher_home');
-           
-            document.getElementById("user").value = loginUser[0].fname;
-
           } 
           else if (loginUser[0].usertype=="student"){
-            res.redirect('/student_home');
-           
+            res.redirect('/student_home');           
           }
       } else {
           res.send('Incorrect username or password')
         }
-      client.release();
+       client.release();
   } catch (err) {
       console.error(err);
       res.json({ error: err });
       }
     });
-   
-
+ //create a new course  
+    app.post('/create', async (req, res) => {
+        const { Pool } = require('pg');
+        const pool = (() => {
+            return new Pool({
+                connectionString: process.env.DATABASE_URL,
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            });
+        })();
+      try {
+          const {courseName, courseContent, credits, numberOfLectures,examDate} = req.body;
+          const client = await pool.connect();
+          client.query('INSERT INTO courseInfo VALUES (DEFAULT,$1, $2, $3,$4,$5)',[courseName, courseContent, credits, numberOfLectures,examDate]);
+      //const results = { 'results': (result) ? result.rows : null};
+      //res.json( results );
+          res.redirect('/teacher_home')
+          client.release();
+      } catch (err) {
+            console.error(err);
+            res.json({ error: err });
+        }
+      });
 
 
 

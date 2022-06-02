@@ -9,3 +9,12 @@ CREATE TABLE usrInfo (
     PRIMARY KEY (userId),
     UNIQUE(email)
 );
+CREATE TABLE courseInfo (
+    courseId SERIAL,
+    courseName VARCHAR(255) NOT NULL,
+	courseContent VARCHAR(255) NOT NULL,
+    credits INTEGER NOT NULL,
+	numberOfLectures INTEGER NOT NULL,
+    examDate VARCHAR(255) NOT NULL,
+    PRIMARY KEY (courseId)
+);
