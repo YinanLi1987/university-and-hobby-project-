@@ -1,0 +1,88 @@
+[
+    { 
+        "fname": "Virat",
+        "lname": "Kohli",
+        "email":"virat@123.com",
+        "user_type": "teacher",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Steve",
+        "lname": "Smith",
+        "email":"steve@123.com",
+        "user_type": "teacher",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Mitchel",
+        "lname": "Johnson",
+        "email":"Mitchele@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "James",
+        "lname": "Anderson",
+        "email":"James@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Sachin",
+        "lname": "Smith",
+        "email":"Sachin@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Mahendra",
+        "lname": "Dhoni",
+        "email":"mahendra@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Kevin",
+        "lname": "Pietersen",
+        "email":"kevine@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Michael",
+        "lname": "Clarke",
+        "email":"micheal@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Steve",
+        "lname": "Smith",
+        "email":"steve@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Ricky",
+        "lname": "Ponting",
+        "email":"ricky@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Rajesh",
+        "lname": "Menon",
+        "email":"rajesh@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    },
+    { 
+        "fname": "Kirti",
+        "lname": "Sharma",
+        "email":"steve@123.com",
+        "user_type": "student",
+        "passwd": "12345"
+    }
+
+
+]

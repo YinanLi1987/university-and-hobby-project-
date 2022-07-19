@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="home.css">
     <title>CourseSystem</title>
 </head>
-<body>
+<body onload="loadEmail();">
     <div>
         <header>
-            <h1>COURSE MANAGEMENT SYSTEM</h1>
+            <h1>STUDY TRACK</h1>
         </header> 
     </div>
 
     <div class="userbar">
         <a href="#"  id="login">Log in</a>
-        <a href="#" id="sign">Sign in</a>
+        <a href="#" id="sign">Sign </a>
     </div>
 
     <div id="slogen">
@@ -31,24 +31,24 @@
                 <input type="email" id="Email" placeholder="email" required name="Email"> 
                 <label for="password">Password</label>
                 <input type="password" id="Password" placeholder="password" required name="Password">
-                <input type="submit" value="Log in">
+                <input type="submit" id="userlogin" value="Log in" onclick=loadJason()>
                 <input type="button" id="cancel1" value="Cancel">
             </form>
         </div>
     </div>
+
     <div>
         <div id="signPart">
             <div class="signForm">
                  <form action="/submit" method="POST">
-                    <h3>Sign in</h3>
+                    <h3>Sign</h3>
                     <label for="fname">First name</label>
                     <input type="text" id="fname" placeholder="First name" required name="fname">
                     <label for="lname">Last name</label>
                     <input type="text" id="lname" placeholder="Last name" required name="lname">
                     <label for="email">Email</label>
                     <input type="email" id="email" placeholder="email" required name="email"> 
-                    <label for="phone">Phone</label>
-                    <input type="number" id="phone" placeholder="Phone number" required name="phoneNumber">
+                    
                     <label for="userType">User type</label>
                     
                         <select type="text" id="userType" placeholder="userType" required name="userType">
@@ -66,29 +66,67 @@
             </div>
         </div>
     </div>
+
     <div>
         <footer>
-            <a href="http://">OAMK.fi</a>
-            <a href="http://">Oiva</a>
-            <a href="http://">Peppi</a>
-            <a href="http://">Library</a>
-            <a href="http://">Help</a>
+            <a href="https://www.oamk.fi">OAMK.fi</a>
+            <a href="https://oiva.oamk.fi/login/index.php?u=&kieli=&kirjautumisvirhekoodi=0&kirjautumisvirhe=-">Oiva</a>
+            <a href="https://opiskelija-peppi.oamk.fi/group/pakki/">Peppi</a>
+            <a href="http://www.oamk.fi/kirjasto/">Library</a>
+            <a href="https://it.oamk.fi/tag/moodle">Help</a>
         </footer>
     </div>
 
 <script>
+    // delete the saved data in localStorage of last login
+    function loadEmail() {
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("courseNames");
+    }
+   
+    // pop up for login form    
     document.getElementById("login").addEventListener("click",function(){
         document.querySelector("#loginPart").style.display="flex";
+        
     });
+    //set localStorage of user email for verification and so on
+    document.getElementById("userlogin").addEventListener("click",function(){
+        let userEmail=document.getElementById("Email").value;
+        localStorage.setItem("userEmail",userEmail);
+        
+    })
+    // quit login
     document.getElementById("cancel1").addEventListener("click",function(){
         document.querySelector("#loginPart").style.display="none";
     })
+    //pop up and quit sign form 
     document.getElementById("sign").addEventListener("click",function(){
         document.querySelector("#signPart").style.display="flex";
     });
     document.getElementById("cancel2").addEventListener("click",function(){
         document.querySelector("#signPart").style.display="none";
     })
+    //get all the courses created by the login teacher
+    function loadJason(){
+        let userEmail=localStorage.getItem("userEmail");
+        //create XHR Object
+        var xhr = new XMLHttpRequest();
+        //open -type, url/file,async
+        xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/courseinfo', true);
+        xhr.onload=function(){
+            if(this.status==200){
+                var courses=JSON.parse (this.responseText);
+                var courseNames=[];
+                for(var i in courses){
+                    if(courses[i].teacher=userEmail){
+                        courseNames.push(courses[i].coursename);
+                    }  
+                }
+                localStorage.setItem("courseNames",JSON.stringify(courseNames));
+            }
+        }
+    xhr.send();
+    }
 </script>
 </body>
 </html>

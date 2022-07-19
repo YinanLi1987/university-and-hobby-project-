@@ -1,0 +1,17 @@
+[
+
+    { 
+        "course_name": "Chinese",
+        "lectures": "6",
+        "students":[],
+        "teachers": ["Virat Kohli"]
+        
+    },
+    { 
+        "course_name": "Finnish",
+        "lectures": "6",
+        "students":[],
+        "teachers": ["Steve Smith"]
+        
+    }
+]

@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    
+    <title>CourseSystem</title>
+</head>
+<body>
+    <div>
+        <header>
+            <h1>STUDY PROGRESS TRACK</h1>
+        </header> 
+    </div>
+
+   
+   <div>
+       <form action="" method="POST" id=loginForm>
+           <h3>Log in</h3>
+           <input type="text" placeholder="Email">
+           <input type="password" placeholder="Password">
+           <button>Log in</button>
+           <a href="#" id=goSign>Create an account</a>
+       </form>
+    </div>
+    <div id="signPart">
+        <form action="" method="POST" id="signForm">
+            <h3>Sign</h3>
+            <label for="fname">First Name</label>
+            <input type="text"  required name="fname" id="fname">
+            <label for="lname">Last Name</label>
+            <input type="text" required name="lname" id="lname">
+            <label for="email">Email</label>
+            <input type="text" required name="email" id="email">
+            <label for="type">User type</label>         
+            <select type="text" id="userType" placeholder="userType" required name="type">
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+            </select>
+            <label for="password">Password</label>
+            <input type="password" required name="password" >
+            <label for="password2">Password Confirm</label>
+            <input type="password2" required name="password2" >
+            <input type="submit" id="submit"/>
+            <button id="cancel">Cancel</button>
+         
+        </form>
+
+    </div>
+    <div>
+        <footer>
+            <a href="http://oamk.fi">OAMK.fi</a>
+            <a href="http://">Oiva</a>
+            <a href="http://">Peppi</a>
+            <a href="http://">Library</a>
+            <a href="http://">Help</a>
+        </footer>
+    </div>
+
+
+<script>
+
+    document.getElementById("goSign").addEventListener("click",function(){
+    document.querySelector("#signPart").style.display="flex";
+    });
+    document.getElementById("cancel").addEventListener("click",function(){
+    document.querySelector("#signPart").style.display="none";
+    })
+   
+</script>
+</body>
+</html>

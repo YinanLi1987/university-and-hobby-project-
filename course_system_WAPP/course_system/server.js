@@ -8,11 +8,8 @@ const passport = require('passport');
 const BasicStrategy= require('passport-http').BasicStrategy;
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json());
-app.set('view engine', 'ejs')
-// test
-app.get("/fruits", (req, res, next) => {
-    res.json(["Banana","Apple","Kiwi"]);
-    });
+
+
 // get each page
 app.get("/", function(req, res) {
         res.sendFile(path.join(__dirname, "UI/home.html"));
@@ -42,9 +39,8 @@ app.use('/student_course', serveStatic(path.join(__dirname, 'UI')));
 
 
 
-
 // get data from table usrInfo
-app.get('/db', async (req, res) => {
+app.get('/courseinfo', async (req, res) => {
     const { Pool } = require('pg');
         const pool = (() => {
             return new Pool({
@@ -56,8 +52,8 @@ app.get('/db', async (req, res) => {
         })();
     try {
         const client = await pool.connect();
-        const result = await client.query('SELECT * FROM usrInfo;');
-        const results = { 'results': (result) ? result.rows : null};
+        const result = await client.query('SELECT * FROM courseInfo;');
+        const results =  (result) ? result.rows : null;
         res.json( results );
         client.release();
     } catch (err) {
@@ -65,6 +61,76 @@ app.get('/db', async (req, res) => {
           res.json({ error: err });
           }
       });
+      // get data from table usrInfo
+app.get('/userinfo', async (req, res) => {
+    const { Pool } = require('pg');
+        const pool = (() => {
+            return new Pool({
+                connectionString: process.env.DATABASE_URL,
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            });
+        })();
+    try {
+     
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM usrInfo');
+        const results = (result) ? result.rows : null;
+        res.json( results);
+        client.release();
+    } catch (err) {
+          console.error(err);
+          res.json({ error: err });
+          }
+      });
+//get all data of traffic light
+// get data from table usrInfo
+app.get('/trafficlights', async (req, res) => {
+    const { Pool } = require('pg');
+        const pool = (() => {
+            return new Pool({
+                connectionString: process.env.DATABASE_URL,
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            });
+        })();
+    try {
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM trafficLight;');
+        const results =  (result) ? result.rows : null;
+        res.json( results );
+        client.release();
+    } catch (err) {
+          console.error(err);
+          res.json({ error: err });
+          }
+      });
+// get all students fname and lname 
+app.get('/dbstudent', async (req, res) => {
+    const { Pool } = require('pg');
+        const pool = (() => {
+            return new Pool({
+                connectionString: process.env.DATABASE_URL,
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            });
+        })();
+    try {
+     
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM usrInfo where usertype=$1;',["student"]);
+        const results = (result) ? result.rows : null;
+        res.json( results);
+        client.release();
+    } catch (err) {
+          console.error(err);
+          res.json({ error: err });
+          }
+      });
+
 
 // submit sign data into database table usrInfo
 app.post('/submit', async (req, res) => {
@@ -78,10 +144,10 @@ app.post('/submit', async (req, res) => {
             });
         })();
       try {
-          const {fname, lname, email, phoneNumber,userType,password} = req.body;
+          const {fname, lname, email,userType,password} = req.body;
           const hashedPassword = await bcrypt.hash(req.body.password, 10)
           const client = await pool.connect();
-          client.query('INSERT INTO usrInfo VALUES (DEFAULT,$1, $2, $3,$4,$5,$6)',[fname, lname,email, phoneNumber,userType,hashedPassword]);
+          client.query('INSERT INTO usrInfo VALUES (DEFAULT,$1, $2, $3,$4,$5)',[fname, lname,email,userType,hashedPassword]);
       //const results = { 'results': (result) ? result.rows : null};
       //res.json( results );
           res.redirect('/')
@@ -91,6 +157,8 @@ app.post('/submit', async (req, res) => {
             res.json({ error: err });
         }
       });
+
+
 //log in validate and redirect to target page
 app.post('/login', async (req, res) => {
     const { Pool } = require('pg');
@@ -107,12 +175,13 @@ app.post('/login', async (req, res) => {
   const client = await pool.connect();
   const user = await client.query('SELECT fname,email,userType, password FROM usrInfo WHERE email=$1;',[Email])
   const loginUser = (user) ? user.rows : null;
-  
+ 
   // compare the password
   try {
       if(await bcrypt.compare(req.body.Password, loginUser[0].password) ){
        
         if (loginUser[0].usertype=="teacher"){
+         
             res.redirect('/teacher_home');
           } 
           else if (loginUser[0].usertype=="student"){
@@ -127,8 +196,46 @@ app.post('/login', async (req, res) => {
       res.json({ error: err });
       }
     });
+
+
+
+
+
+
+
+
+
  //create a new course  
     app.post('/create', async (req, res) => {
+        const { Pool } = require('pg');
+        const pool = (() => {
+            return new Pool({
+                connectionString: process.env.DATABASE_URL,
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            });  
+        })();
+      try {
+          const {courseName, lesson01, lesson02, lesson03, lesson04, lesson05, lesson06, lesson07, lesson08,lesson09,students,teacher} = req.body;
+          const client = await pool.connect();
+          client.query('INSERT INTO courseInfo VALUES (DEFAULT,$1, $2, $3,$4,$5,$6,$7,$8,$9,$10,$11,$12)',[courseName, students,lesson01, lesson02, lesson03, lesson04, lesson05, lesson06, lesson07, lesson08,lesson09,teacher]);
+          for(i=0;i<students.length;i++) {
+              client.query('INSERT INTO trafficLight VALUES (DEFAULT,$1, $2, $3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21)',[students[i],courseName,'Unmark','Unmark','Unmark','Unmark','Unmark','Unmark','Unmark','Unmark','Unmark',lesson01, lesson02, lesson03, lesson04, lesson05, lesson06, lesson07, lesson08,lesson09,teacher])
+          }
+      //const results = { 'results': (result) ? result.rows : null};
+      //res.json( results );
+          res.redirect('/teacher_home')
+          client.release();
+      } catch (err) {
+            console.error(err);
+            res.json({ error: err });
+        }
+      });
+
+// confirm the status of traffic light
+
+    app.post('/confirm', async (req, res) => {
         const { Pool } = require('pg');
         const pool = (() => {
             return new Pool({
@@ -139,18 +246,22 @@ app.post('/login', async (req, res) => {
             });
         })();
       try {
-          const {courseName, courseContent, credits, numberOfLectures,examDate} = req.body;
+          const {studentEmail, courseName,lesson01, lesson02, lesson03, lesson04, lesson05, lesson06, lesson07, lesson08, lesson09} = req.body;
+       
           const client = await pool.connect();
-          client.query('INSERT INTO courseInfo VALUES (DEFAULT,$1, $2, $3,$4,$5)',[courseName, courseContent, credits, numberOfLectures,examDate]);
+          client.query('UPDATE trafficLight SET lesson01=$3, lesson02=$4, lesson03=$5, lesson04=$6, lesson05=$7, lesson06=$8, lesson07=$9, lesson08=$10, lesson09=$11 WHERE studentEmail=$1 AND courseName=$2 ',[studentEmail,courseName,lesson01, lesson02, lesson03, lesson04, lesson05, lesson06, lesson07, lesson08, lesson09]);
+        
       //const results = { 'results': (result) ? result.rows : null};
       //res.json( results );
-          res.redirect('/teacher_home')
+          res.redirect('/student_home')
           client.release();
       } catch (err) {
             console.error(err);
             res.json({ error: err });
         }
       });
+
+
 
 
 

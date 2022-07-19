@@ -7,132 +7,416 @@
     <link rel="stylesheet" href="teacher_home.css">
     <title>Course System</title>
 </head>
-<body>
+<body onload="loginUser();studentslist();loadJason();loadLight();message();"> 
     <div>
         <header>
-            <h1>COURSE MANAGEMENT SYSTEM</h1>
+            <h1>STUDY TRACK</h1>
         </header> 
     </div>
-    <div class="userbar">
+
+    <div class="userbar" >
         <a href="#" id="createCourse">Create a Course</a>
-        <a href="#" id="message">Message</a>
-        <a href="#" id="user" >  </a>
+        <a href="#" id="user" > user</a>
+        <a href="https://stark-ridge-06549.herokuapp.com/">Log out</a>
     </div>
-    <div id="editInfo">
-        <div class="editInformation">
-            
-            <form action="">
-                <h3>Edit your information</h3>
-                <label for="fname">First name</label>
-                <input type="text" id="fname" placeholder="First name">
-                <label for="mname">Middle name</label>
-                <input type="text" id="mname" placeholder="Middle name">
-                <label for="lname">Last name</label>
-                <input type="text" id="lname" placeholder="Last name">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="email"> 
-                <label for="phone">Phone</label>
-                <input type="number" id="phone" placeholder="Phone number">
-                <label for="userType">User type</label>
-                <select name="userType" id="userType">
-                    <option value="teacher">Teacher</option>
-                    <option value="student">Student</option>
-                </select>
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Password">
-                <label for="passwordConfirm">Password confirm</label>
-                <input type="password" id="passwordConfirm" placeholder="Password Confirm">
-                <input type="submit" value="Save">
-                <input type="button" id="cancel3" value="Cancel">
-            </form>
-        </div>
+
+
+    <div class="courseTable">
+        <div id="courseList1" ></div>
+        <div id="courseList2" ></div>
+        <div id="courseList3" ></div>
+        <div id="courseList4" ></div>
+        <div id="courseList5" ></div>
     </div>
+ 
     <div id="create">
         <div class="course">
             <form action="/create" method="POST">
                <h3>Create a new course</h3>
                <label for="courseName">Course Name</label>
                <input type="text" id="courseName" required name="courseName">
-               <label for="content">Content</label>
-               <input type="textarea" id="content" required name="courseContent">
-               <label for="credits">Credits</label>
-               <input type="text" id="credits" required name="credits">
-               <label for="courses">Number of lectures</label>
-               <input type="number" id="courses" required name="numberOfLectures">
-               <label for="exam">Exam Date</label>
-               <input type="date" id="exam" required name="examDate">
-               <input type="submit" value="Create">
+               <label for="courses">Lesson 01</label>
+               <input type="date" id="lesson01" required name="lesson01">
+               <label for="courses">Lesson 02</label>
+               <input type="date" id="lesson02" required name="lesson02">
+               <label for="courses">Lesson 03</label>
+               <input type="date" id="lesson03" required name="lesson03">
+               <label for="courses">Lesson 04</label>
+               <input type="date" id="lesson04" required name="lesson04">
+               <label for="courses">Lesson 05</label>
+               <input type="date" id="lesson05" required name="lesson05">
+               <label for="courses">Lesson 06</label>
+               <input type="date" id="lesson06" required name="lesson06">
+               <label for="courses">Lesson 07</label>
+               <input type="date" id="lesson07" required name="lesson07">
+               <label for="courses">Lesson 08</label>
+               <input type="date" id="lesson08" required name="lesson08">
+               <label for="courses">Lesson 09</label>
+               <input type="date" id="lesson09" required name="lesson09">
+               <label for="addstudents">Add students</label>
+               <div id="students" name="addstudents"></div>
+               <input type="hidden" name="teacher" id="teacherName">
+               <input type="submit" value="Create" onclick=loadJason()>
                <input type="button" id="cancel4" value="Cancel">
             </form>
         </div>
     </div>
 
-
-    <div>
-        <table>
-           <tr>
-               <th>Course</th>
-               <th>Introduction</th>
-               <th>Track</th>
-           </tr>
-           <tr>
-               <td><img src="" alt="photo"></td>
-               <td><ul>
-                   <li>Course 01</li>
-                   <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam iusto totam eveniet ratione sit corporis tempore perferendis necessitatibus adipisci libero!</li>
-                   <li>5op</li>
-               </ul>
-            </td>
-               <td><button>TRACK</button></td>
-           </tr>
-           <tr>
-            <td><img src="" alt="photo"></td>
-            <td><ul>
-                <li>Course 02</li>
-                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam iusto totam eveniet ratione sit corporis tempore perferendis necessitatibus adipisci libero!</li>
-                <li>5op</li>
-            </ul>
-         </td>
-            <td><button>TRACK</button></td>
-        </tr>
-        <tr>
-            <td><img src="" alt="photo"></td>
-            <td><ul>
-                <li>Course 03</li>
-                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam iusto totam eveniet ratione sit corporis tempore perferendis necessitatibus adipisci libero!</li>
-                <li>5op</li>
-            </ul>
-         </td>
-            <td><button>TRACK</button></td>
-        </tr>
-        </table>
-    </div>
+    
 
     <div>
         <footer>
-            <a href="http://">OAMK.fi</a>
-            <a href="http://">Oiva</a>
-            <a href="http://">Peppi</a>
-            <a href="http://">Library</a>
-            <a href="http://">Help</a>
+            <a href="https://www.oamk.fi">OAMK.fi</a>
+            <a href="https://oiva.oamk.fi/login/index.php?u=&kieli=&kirjautumisvirhekoodi=0&kirjautumisvirhe=-">Oiva</a>
+            <a href="https://opiskelija-peppi.oamk.fi/group/pakki/">Peppi</a>
+            <a href="http://www.oamk.fi/kirjasto/">Library</a>
+            <a href="https://it.oamk.fi/tag/moodle">Help</a>
         </footer>
     </div>
     <script>
-       
-
-        document.getElementById("user").addEventListener("click",function(){
-            document.querySelector("#editInfo").style.display="flex";
-    });
-        document.getElementById("cancel3").addEventListener("click",function(){
-            document.querySelector("#editInfo").style.display="none";
-    })
-
-    document.getElementById("createCourse").addEventListener("click",function(){
+    //pop up and quit form for creating a course
+        document.getElementById("createCourse").addEventListener("click",function(){
             document.querySelector("#create").style.display="flex";
-    });
+        });
         document.getElementById("cancel4").addEventListener("click",function(){
             document.querySelector("#create").style.display="none";
-    })
-    </script>
+        });   
+    //show login user name
+    function loginUser(){
+        let userEmail=localStorage.getItem("userEmail");
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/userinfo', true);
+        xhr.onload=function(){
+            if(this.status==200){
+                var userInfo=JSON.parse (this.responseText);
+                var userIndex=userInfo.map(object => object.email).indexOf(userEmail);
+                var username=userInfo[userIndex].fname;   
+                document.getElementById("user").innerText=username;
+            }
+        } 
+    xhr.send();
+    } 
+    //get all courses created by the login user, make it a array and store in localStorage for later use.
+    function loadJason(){
+        let userEmail=localStorage.getItem("userEmail");
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/courseinfo', true);
+        xhr.onload=function(){
+            if(this.status==200){
+                var courses=JSON.parse (this.responseText);
+                var courseNames=[];
+                for(var i in courses){
+                    if(courses[i].teacher=userEmail){
+                        courseNames.push(courses[i].coursename);
+                    }  
+                }
+                localStorage.setItem("courseNames",JSON.stringify(courseNames));
+            }
+        }
+    xhr.send();
+    }
+    // students list for creating course by the teacher
+    function studentslist(){
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/dbstudent', true);
+        xhr.onload=function(){
+            if(this.status==200){
+                var studentInfo=JSON.parse (this.responseText);
+                var output='';
+                for(var i in studentInfo){
+                    output+='<input type="checkbox" name="students" value='+studentInfo[i].email+'>'+studentInfo[i].fname+' '+studentInfo[i].lname+'</input>';
+                }
+                document.getElementById("students").innerHTML=output;
+            }
+        }
+    xhr.send();
+    }
+    // show courses and students' study traffic lights 
+    function loadLight(){
+            let userEmail=localStorage.getItem("userEmail");
+            let courseArray=JSON.parse(localStorage.getItem("courseNames"));
+            console.log(courseArray);
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/trafficlights', true);
+            xhr.onload=function(){
+                if(this.status==200){
+                    var lightList=JSON.parse (this.responseText);
+                    var output1='';
+                    var output2='';
+                    var output3='';
+                    var output4='';
+                    var output5='';
+                    const today = new Date().toISOString().slice(0, 10);
+                        //display the first course
+                        for(i in lightList){
+                            if(courseArray[0]==lightList[i].coursename && lightList[i].teacher==userEmail){
+                                output1+=lightList[i].studentemail
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson01+'; border:1px solid black;">'+lightList[i].date01+lightList[i].lesson01+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson02+'; border:1px solid black;">'+lightList[i].date02+lightList[i].lesson02+'</span>'   
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson03+'; border:1px solid black;">'+lightList[i].date03+lightList[i].lesson03+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson04+'; border:1px solid black;">'+lightList[i].date04+lightList[i].lesson04+'</span>' 
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson05+'; border:1px solid black;">'+lightList[i].date05+lightList[i].lesson05+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson06+'; border:1px solid black;">'+lightList[i].date06+lightList[i].lesson06+'</span>'   
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson07+'; border:1px solid black;">'+lightList[i].date07+lightList[i].lesson07+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson08+'; border:1px solid black;">'+lightList[i].date08+lightList[i].lesson08+'</span>'  
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson09+'; border:1px solid black;">'+lightList[i].date09+lightList[i].lesson09+'</span>'
+                                        +'<br/>'+'<br/>'; 
+                            }
+                        }
+                        //display the second course
+                        for(i in lightList){
+                            if(courseArray[1]==lightList[i].coursename && lightList[i].teacher==userEmail){
+                                output2+=lightList[i].studentemail
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson01+'; border:1px solid black;">'+lightList[i].date01+lightList[i].lesson01+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson02+'; border:1px solid black;">'+lightList[i].date02+lightList[i].lesson02+'</span>' 
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson03+'; border:1px solid black;">'+lightList[i].date03+lightList[i].lesson03+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson04+'; border:1px solid black;">'+lightList[i].date04+lightList[i].lesson04+'</span>' 
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson05+'; border:1px solid black;">'+lightList[i].date05+lightList[i].lesson05+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson06+'; border:1px solid black;">'+lightList[i].date06+lightList[i].lesson06+'</span>'   
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson07+'; border:1px solid black;">'+lightList[i].date07+lightList[i].lesson07+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson08+'; border:1px solid black;">'+lightList[i].date08+lightList[i].lesson08+'</span>' 
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson09+'; border:1px solid black;">'+lightList[i].date09+lightList[i].lesson09+'</span>'
+                                        +'<br/>'+'<br/>';
+                            }
+                        }
+                        //display the third course
+                        for(i in lightList){
+                            if(courseArray[2]==lightList[i].coursename && lightList[i].teacher==userEmail){
+                                output3+=lightList[i].studentemail
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson01+'; border:1px solid black;">'+lightList[i].date01+lightList[i].lesson01+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson02+'; border:1px solid black;">'+lightList[i].date02+lightList[i].lesson02+'</span>' 
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson03+'; border:1px solid black;">'+lightList[i].date03+lightList[i].lesson03+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson04+'; border:1px solid black;">'+lightList[i].date04+lightList[i].lesson04+'</span>' 
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson05+'; border:1px solid black;">'+lightList[i].date05+lightList[i].lesson05+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson06+'; border:1px solid black;">'+lightList[i].date06+lightList[i].lesson06+'</span>'   
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson07+'; border:1px solid black;">'+lightList[i].date07+lightList[i].lesson07+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson08+'; border:1px solid black;">'+lightList[i].date08+lightList[i].lesson08+'</span>' 
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson09+'; border:1px solid black;">'+lightList[i].date09+lightList[i].lesson09+'</span>'
+                                        +'<br/>'+'<br/>';
+                            }
+                        }
+                        //display the fourth course
+                        for(i in lightList){
+                            if(courseArray[3]==lightList[i].coursename && lightList[i].teacher==userEmail){
+                                output4+=lightList[i].studentemail
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson01+'; border:1px solid black;">'+lightList[i].date01+lightList[i].lesson01+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson02+'; border:1px solid black;">'+lightList[i].date02+lightList[i].lesson02+'</span>'    
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson03+'; border:1px solid black;">'+lightList[i].date03+lightList[i].lesson03+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson04+'; border:1px solid black;">'+lightList[i].date04+lightList[i].lesson04+'</span>'  
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson05+'; border:1px solid black;">'+lightList[i].date05+lightList[i].lesson05+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson06+'; border:1px solid black;">'+lightList[i].date06+lightList[i].lesson06+'</span>'    
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson07+'; border:1px solid black;">'+lightList[i].date07+lightList[i].lesson07+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson08+'; border:1px solid black;">'+lightList[i].date08+lightList[i].lesson08+'</span>'  
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson09+'; border:1px solid black;">'+lightList[i].date09+lightList[i].lesson09+'</span>'
+                                        +'<br/>'+'<br/>';
+                            }
+                        }
+                        //display the fifth course
+                        for(i in lightList){
+                            if(courseArray[4]==lightList[i].coursename && lightList[i].teacher==userEmail){
+                                output5+=lightList[i].studentemail
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson01+'; border:1px solid black;">'+lightList[i].date01+lightList[i].lesson01+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson02+'; border:1px solid black;">'+lightList[i].date02+lightList[i].lesson02+'</span>' 
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson03+'; border:1px solid black;">'+lightList[i].date03+lightList[i].lesson03+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson04+'; border:1px solid black;">'+lightList[i].date04+lightList[i].lesson04+'</span>' 
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson05+'; border:1px solid black;">'+lightList[i].date05+lightList[i].lesson05+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson06+'; border:1px solid black;">'+lightList[i].date06+lightList[i].lesson06+'</span>'  
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson07+'; border:1px solid black;">'+lightList[i].date07+lightList[i].lesson07+'</span>'
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson08+'; border:1px solid black;">'+lightList[i].date08+lightList[i].lesson08+'</span>'  
+                                        +' '+' '+'<span style="background-color:'+lightList[i].lesson09+'; border:1px solid black;">'+lightList[i].date09+lightList[i].lesson09+'</span>'
+                                        +'<br/>'+'<br/>';
+                            }
+                        }
+                        document.getElementById("courseList1").innerHTML='<h2 style="margin:2 auto">'+courseArray[0]+'</h2>'+'<div id="message1" style="background-color: #00BFB2;color:black;width:500px;"></div>'+'<br/>'+output1
+                        document.getElementById("courseList2").innerHTML='<h2 style="margin:2 auto">'+courseArray[1]+'</h2>'+'<div id="message2" style="background-color: #00BFB2;color:black;width:500px;"></div>'+'<br/>'+output2
+                        document.getElementById("courseList3").innerHTML='<h2 style="margin:2 auto">'+courseArray[2]+'</h2>'+'<div id="message3" style="background-color: #00BFB2;color:black;width:500px;"></div>'+'<br/>'+output3
+                        document.getElementById("courseList4").innerHTML='<h2 style="margin:2 auto">'+courseArray[3]+'</h2>'+'<div id="message4" style="background-color: #00BFB2;color:black;width:500px;"></div>'+'<br/>'+output4
+                        document.getElementById("courseList5").innerHTML='<h2 style="margin:2 auto">'+courseArray[4]+'</h2>'+'<div id="message5" style="background-color: #00BFB2;color:black;width:500px;"></div>'+'<br/>'+output5  
+                    }
+                }
+                xhr.send();
+            }
+    //show message about how many traffic lights need to be marked
+    function message(){
+        let  unmarked1=Number(0);
+        let userEmail=localStorage.getItem("userEmail");
+        let courseArray=JSON.parse(localStorage.getItem("courseNames"));
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/trafficlights', true);
+        xhr.onload=function(){
+            if(this.status==200){
+                var courses=JSON.parse (this.responseText);
+                var  unmarked2=Number(0);
+                var  unmarked3=Number(0);
+                var  unmarked4=Number(0);
+                var  unmarked5=Number(0);
+                const today = new Date().toISOString().slice(0, 10);
+                //how many traffic lights need to be marked of the first course
+                for(i in courses) {
+                    if(courseArray[0]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date01<today && courses[i].lesson01=="Unmark"){
+                        unmarked1 +=1;
+                    }
+                    if(courseArray[0]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date02<today && courses[i].lesson02=="Unmark"){
+                        unmarked1 +=1;
+                    }
+                    if(courseArray[0]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date03<today && courses[i].lesson03=="Unmark"){
+                        unmarked1 +=1;
+                    }
+                    if(courseArray[0]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date04<today && courses[i].lesson04=="Unmark"){
+                        unmarked1 +=1;
+                    }
+                    if(courseArray[0]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date05<today && courses[i].lesson05=="Unmark"){
+                        unmarked1 +=1;
+                    }
+                    if(courseArray[0]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date06<today && courses[i].lesson06=="Unmark"){
+                        unmarked1 +=1;
+                    }
+                    if(courseArray[0]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date07<today && courses[i].lesson07=="Unmark"){
+                        unmarked1 +=1;
+                    }
+                    if(courseArray[0]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date08<today && courses[i].lesson08=="Unmark"){
+                        unmarked1 +=1;
+                    }
+                    if(courseArray[0]==courses[i].coursename && courses[i].teacher==courses && courses[i].date09<today && courses[i].lesson09=="Unmark"){
+                        unmarked1 +=1;
+                    }
+                }  
+               //how many traffic lights need to be marked of the second course
+                for(i in courses) {
+                    if(courseArray[1]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date01<today && courses[i].lesson01=="Unmark"){
+                        unmarked2 +=1;
+                    }
+                    if(courseArray[1]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date02<today && courses[i].lesson02=="Unmark"){
+                        unmarked2 +=1;
+                    }
+                    if(courseArray[1]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date03<today && courses[i].lesson03=="Unmark"){
+                        unmarked2 +=1;
+                    }
+                    if(courseArray[1]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date04<today && courses[i].lesson04=="Unmark"){
+                        unmarked2 +=1;
+                    }
+                    if(courseArray[1]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date05<today && courses[i].lesson05=="Unmark"){
+                        unmarked2 +=1;
+                    }
+                    if(courseArray[1]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date06<today && courses[i].lesson06=="Unmark"){
+                        unmarked2 +=1;
+                    }
+                    if(courseArray[1]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date07<today && courses[i].lesson07=="Unmark"){
+                        unmarked2 +=1;
+                    }
+                    if(courseArray[1]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date08<today && courses[i].lesson08=="Unmark"){
+                        unmarked2 +=1;
+                    }
+                    if(courseArray[1]==courses[i].coursename && courses[i].teacher==courses && courses[i].date09<today && courses[i].lesson09=="Unmark"){
+                        unmarked2 +=1;
+                    }
+                }  
+                //how many traffic lights need to be marked of the third course
+                for(i in courses) {
+                    if(courseArray[2]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date01<today && courses[i].lesson01=="Unmark"){
+                        unmarked3 +=1;
+                    }
+                    if(courseArray[2]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date02<today && courses[i].lesson02=="Unmark"){
+                        unmarked3 +=1;
+                    }
+                    if(courseArray[2]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date03<today && courses[i].lesson03=="Unmark"){
+                        unmarked3 +=1;
+                    }
+                    if(courseArray[2]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date04<today && courses[i].lesson04=="Unmark"){
+                        unmarked3 +=1;
+                    }
+                    if(courseArray[2]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date05<today && courses[i].lesson05=="Unmark"){
+                        unmarked3 +=1;
+                    }
+                    if(courseArray[2]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date06<today && courses[i].lesson06=="Unmark"){
+                        unmarked3 +=1;
+                    }
+                    if(courseArray[2]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date07<today && courses[i].lesson07=="Unmark"){
+                        unmarked3 +=1;
+                    }
+                    if(courseArray[2]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date08<today && courses[i].lesson08=="Unmark"){
+                        unmarked3 +=1;
+                    }
+                    if(courseArray[2]==courses[i].coursename && courses[i].teacher==courses && courses[i].date09<today && courses[i].lesson09=="Unmark"){
+                        unmarked3 +=1;
+                    }
+                }  
+                //how many traffic lights need to be marked of the fourth course
+                for(i in courses) {
+                    if(courseArray[3]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date01<today && courses[i].lesson01=="Unmark"){
+                        unmarked4 +=1;
+                    }
+                    if(courseArray[3]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date02<today && courses[i].lesson02=="Unmark"){
+                        unmarked4 +=1;
+                    }
+                    if(courseArray[3]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date03<today && courses[i].lesson03=="Unmark"){
+                        unmarked4 +=1;
+                    }
+                    if(courseArray[3]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date04<today && courses[i].lesson04=="Unmark"){
+                        unmarked4 +=1;
+                    }
+                    if(courseArray[3]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date05<today && courses[i].lesson05=="Unmark"){
+                        unmarked4 +=1;
+                    }
+                    if(courseArray[3]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date06<today && courses[i].lesson06=="Unmark"){
+                        unmarked4 +=1;
+                    }
+                    if(courseArray[3]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date07<today && courses[i].lesson07=="Unmark"){
+                        unmarked4 +=1;
+                    }
+                    if(courseArray[3]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date08<today && courses[i].lesson08=="Unmark"){
+                        unmarked4 +=1;
+                    }
+                    if(courseArray[3]==courses[i].coursename && courses[i].teacher==courses && courses[i].date09<today && courses[i].lesson09=="Unmark"){
+                        unmarked4 +=1;
+                    }
+                }  
+                //how many traffic lights need to be marked of the fifth course
+                for(i=0; i<courses.length; i++) {
+                    if(courseArray[4]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date01<today && courses[i].lesson01=="Unmark"){
+                        unmarked5 +=1;
+                    }
+                    if(courseArray[4]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date02<today && courses[i].lesson02=="Unmark"){
+                        unmarked5 +=1;
+                    }
+                    if(courseArray[4]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date03<today && courses[i].lesson03=="Unmark"){
+                        unmarked5 +=1;
+                    }
+                    if(courseArray[4]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date04<today && courses[i].lesson04=="Unmark"){
+                        unmarked5 +=1;
+                    }
+                    if(courseArray[4]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date05<today && courses[i].lesson05=="Unmark"){
+                        unmarked5 +=1;
+                    }
+                    if(courseArray[4]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date06<today && courses[i].lesson06=="Unmark"){
+                        unmarked5 +=1;
+                    }
+                    if(courseArray[4]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date07<today && courses[i].lesson07=="Unmark"){
+                        unmarked5 +=1;
+                    }
+                    if(courseArray[4]==courses[i].coursename && courses[i].teacher==userEmail && courses[i].date08<today && courses[i].lesson08=="Unmark"){
+                        unmarked5 +=1;
+                    }
+                    if(courseArray[4]==courses[i].coursename && courses[i].teacher==courses && courses[i].date09<today && courses[i].lesson09=="Unmark"){
+                        unmarked5 +=1;
+                    }
+                }  
+             
+                document.getElementById("message1").innerHTML="There are "+unmarked1+" traffic lights need to mark in this course.";
+                document.getElementById("message2").innerHTML="There are "+unmarked2+" traffic lights need to mark in this course.";
+                document.getElementById("message3").innerHTML="There are "+unmarked3+" traffic lights need to mark in this course.";
+                document.getElementById("message4").innerHTML="There are "+unmarked4+" traffic lights need to mark in this course.";
+                document.getElementById("message5").innerHTML="There are "+unmarked5+" traffic lights need to mark in this course.";
+            }
+            console.log(courseArray[2])
+        }
+        xhr.send();
+    }
+
+
+
+
+
+ </script>
 </body>
 </html>
