@@ -22,6 +22,14 @@
 
 
     <div class="courseTable">
+        <div>
+            <h3>Note:</h3>
+            <ul>
+                <li>You can create five courses.</li>
+                <li>You can create nine lectures for each course.</li>
+                <li>If the content does not show correctly, please fefresh the page.</li>
+            </ul>     
+        </div>
         <div id="courseList1" ></div>
         <div id="courseList2" ></div>
         <div id="courseList3" ></div>
@@ -99,6 +107,7 @@
     //get all courses created by the login user, make it a array and store in localStorage for later use.
     function loadJason(){
         let userEmail=localStorage.getItem("userEmail");
+        document.getElementById("teacherName").value=userEmail;
         var xhr = new XMLHttpRequest();
         xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/courseinfo', true);
         xhr.onload=function(){
