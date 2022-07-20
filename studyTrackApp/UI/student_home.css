@@ -1,0 +1,32 @@
+body{ 
+    padding: 0px;
+    margin: 100px;
+    background-color:white;
+} 
+header{ 
+    display: block;
+    background-color: #00BFB2;
+    color:white;
+    font-size:14px;
+    text-align: center;  
+} 
+.userbar { 
+    display: flex; 
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color:white;    
+}
+.userbar a { 
+    display:block;
+    margin: 10px;
+    color:#00BFB2; 
+}
+footer{ 
+    display: flex;
+    margin-top: 100px;
+    flex-direction: row;
+    justify-content:space-around;
+   }
+   footer a{ 
+    color:#00BFB2;   
+   }
