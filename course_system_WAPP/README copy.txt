@@ -41,7 +41,7 @@ This web app is made for teachers and students to track studentsÕ learning progr
 
 > TeacherÕs home page:
 
-![teacherpage](https://github.com/YinanLi1987/university-and-hobby-project-/blob/main/course_system_WAPP/pictures/teacherpage.jpg?raw=true)
+![teacherpage](https://github.com/YinanLi1987/university-and-hobby-project-/blob/main/course_system_WAPP/pictures/teacherpage.jpeg?raw=true)
 
 
 > StudentÕs home page:
