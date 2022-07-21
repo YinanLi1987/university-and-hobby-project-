@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="student_home.css">
+    <script src="functions.js"></script>
     <title>Document</title>
 </head>
 <body onload="loginUser();courseOfStudent();">
@@ -29,8 +30,6 @@
 
         </ul>
     </div>
-
-
   
     <div id="courseList" >
     </div>
@@ -43,163 +42,5 @@
             <a href="http://www.oamk.fi/kirjasto/">Library</a>
             <a href="https://it.oamk.fi/tag/moodle">Help</a>
     </div>
-
-    
-
-    <script>
-        // show login user name
-        function loginUser(){
-            let userEmail=localStorage.getItem("userEmail");
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/userinfo', true);
-            xhr.onload=function(){
-                if(this.status==200){
-                    var userInfo=JSON.parse (this.responseText);               
-                    var userIndex=userInfo.map(object => object.email).indexOf(userEmail);
-                    var username=userInfo[userIndex].fname;
-                    document.getElementById("user").innerText=username;
-                }
-            }
-            xhr.send();
-        }
-        // show how many courses this student have taken   
-        function courseOfStudent(){
-        let userEmail=localStorage.getItem("userEmail");
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/trafficlights', true);
-        xhr.onload=function(){
-            if(this.status==200){
-                var trafficLight=JSON.parse (this.responseText);
-                const today = new Date().toISOString().slice(0, 10);
-                let unmarkedLight=Number(0);
-                output='';
-                for(var i in trafficLight){
-                    if(trafficLight[i].studentemail==userEmail){
-                        if(trafficLight[i].date01<today && trafficLight[i].lesson01=="Unmark"){
-                            unmarkedLight+=1;
-                        }else{
-                            unmarkedLight+=0;
-                        }
-                        if(trafficLight[i].date02<today && trafficLight[i].lesson02=="Unmark"){
-                            unmarkedLight+=1;
-                        }else{
-                            unmarkedLight+=0;
-                        }
-                        if(trafficLight[i].date03<today && trafficLight[i].lesson03=="Unmark"){
-                            unmarkedLight+=1;
-                        }else{
-                            unmarkedLight+=0;
-                        }
-                        if(trafficLight[i].date04<today && trafficLight[i].lesson04=="Unmark"){
-                            unmarkedLight+=1;
-                        }else{
-                            unmarkedLight+=0;
-                        }
-                        if(trafficLight[i].date05<today && trafficLight[i].lesson05=="Unmark"){
-                            unmarkedLight+=1;
-                        }else{
-                            unmarkedLight+=0;
-                        }
-                        if(trafficLight[i].date06<today && trafficLight[i].lesson06=="Unmark"){
-                            unmarkedLight+=1;
-                        }else{
-                            unmarkedLight+=0;
-                        }
-                        if(trafficLight[i].date07<today && trafficLight[i].lesson07=="Unmark"){
-                            unmarkedLight+=1;
-                        }else{
-                            unmarkedLight+=0;
-                        }
-                        if(trafficLight[i].date08<today && trafficLight[i].lesson08=="Unmark"){
-                            unmarkedLight+=1;
-                        }else{
-                            unmarkedLight+=0;
-                        }
-                        if(trafficLight[i].date09<today && trafficLight[i].lesson09=="Unmark"){
-                            unmarkedLight+=1;
-                        }else{
-                            unmarkedLight+=0;
-                        }
-
-                output+='<form action="/confirm" method="POST">'
-                        +'<input type="hidden" name="studentEmail" value="'+userEmail+'" >'    
-                        +'<input name=courseName value="'+trafficLight[i].coursename+'" ></input>'+'<br />'+'<br />'
-                        +'<lable for='+trafficLight[i].date01+'>'+trafficLight[i].date01+'</lable>'
-                        +'<select type="text" id='+trafficLight[i].date01+' name="lesson01" style="background-color:'+trafficLight[i].lesson01+'">'
-                            +'<option value="'+trafficLight[i].lesson01+'">'+trafficLight[i].lesson01+'</option>'
-                            +'<option value="Green">Green</option>'
-                            +'<option  value="Yellow">Yellow</option>'
-                            +'<option  value="Red" >Red</option>'
-                        +'</select>'
-                        +'<lable for='+trafficLight[i].date02+'>'+trafficLight[i].date02+'</lable>'
-                        +'<select type="text"  id='+trafficLight[i].date02+' name="lesson02" style="background-color:'+trafficLight[i].lesson02+'" >'
-                            +'<option value="'+trafficLight[i].lesson02+'">'+trafficLight[i].lesson02+'</option>'
-                            +'<option value="Green">Green</option>'
-                            +'<option value="Yellow">Yellow</option>'
-                            +'<option value="Red" >Red</option>'
-                        +'</select>'   
-                        +'<lable for='+trafficLight[i].date03+'>'+trafficLight[i].date03+'</lable>'
-                        +'<select type="text"  id='+trafficLight[i].date03+' name="lesson03" style="background-color:'+trafficLight[i].lesson03+'" >'
-                            +'<option value="'+trafficLight[i].lesson03+'">'+trafficLight[i].lesson03+'</option>'
-                            +'<option value="Green">Green</option>'
-                            +'<option value="Yellow">Yellow</option>'
-                            +'<option value="Red" >Red</option>'
-                        +'</select>'   
-                        +'<lable for='+trafficLight[i].date04+'>'+trafficLight[i].date04+'</lable>'
-                        +'<select type="text" id='+trafficLight[i].date04+' name="lesson04" style="background-color:'+trafficLight[i].lesson04+'">'
-                            +'<option value="'+trafficLight[i].lesson04+'">'+trafficLight[i].lesson04+'</option>'
-                            +'<option value="Green">Green</option>'
-                            +'<option value="Yellow">Yellow</option>'
-                            +'<option value="Red" >Red</option>'
-                        +'</select>'   
-                        +'<lable for='+trafficLight[i].date05+'>'+trafficLight[i].date05+'</lable>'
-                        +'<select type="text"  id='+trafficLight[i].date05+' name="lesson05" style="background-color:'+trafficLight[i].lesson05+'" >'
-                            +'<option value="'+trafficLight[i].lesson05+'">'+trafficLight[i].lesson05+'</option>'
-                            +'<option value="Green">Green</option>'
-                            +'<option value="Yellow">Yellow</option>'
-                            +'<option value="Red" >Red</option>'
-                        +'</select>'   
-                        +'<lable for='+trafficLight[i].date06+'>'+trafficLight[i].date06+'</lable>'
-                        +'<select type="text"  id='+trafficLight[i].date06+' name="lesson06" style="background-color:'+trafficLight[i].lesson06+'">'
-                            +'<option value="'+trafficLight[i].lesson06+'">'+trafficLight[i].lesson06+'</option>'
-                            +'<option value="Green">Green</option>'
-                            +'<option value="Yellow">Yellow</option>'
-                            +'<option value="Red" >Red</option>'
-                        +'</select>'   
-                        +'<lable for='+trafficLight[i].date07+'>'+trafficLight[i].date07+'</lable>'
-                        +'<select type="text"  id='+trafficLight[i].date07+' name="lesson07" style="background-color:'+trafficLight[i].lesson07+'">'
-                            +'<option value="'+trafficLight[i].lesson07+'">'+trafficLight[i].lesson07+'</option>'
-                            +'<option value="Green">Green</option>'
-                            +'<option value="Yellow">Yellow</option>'
-                            +'<option value="Red" >Red</option>'
-                        +'</select>'   
-                        +'<lable for='+trafficLight[i].date08+'>'+trafficLight[i].date08+'</lable>'
-                        +'<select type="text" id='+trafficLight[i].date08+' name="lesson08" style="background-color:'+trafficLight[i].lesson08+'">'
-                            +'<option value="'+trafficLight[i].lesson08+'">'+trafficLight[i].lesson08+'</option>'
-                            +'<option value="Green">Green</option>'
-                            +'<option value="Yellow">Yellow</option>'
-                            +'<option value="Red" >Red</option>'
-                        +'</select>'   
-                        +'<lable for='+trafficLight[i].date09+'>'+trafficLight[i].date09+'</lable>'
-                        +'<select type="text"  id='+trafficLight[i].date09+' name="lesson09" style="background-color:'+trafficLight[i].lesson09+'">'
-                            +'<option value="'+trafficLight[i].lesson09+'">'+trafficLight[i].lesson09+'</option>'
-                            +'<option value="Green">Green</option>'
-                            +'<option value="Yellow">Yellow</option>'
-                            +'<option value="Red" >Red</option>'
-                        +'</select>'                            
-                        +'<input type="submit" value="Confirm"></input>'+'</form>'
-                        +'<br />'
-                        +'<p>Message : You have '+unmarkedLight+' traffic light need to be marked for this course.<p>'
-                        +'<br />'+'<br />';   
-                    }
-                }
-                document.getElementById("courseList").innerHTML=output;
-            }
-        }
-        xhr.send();
-    }
-
-
-    </script>
 </body>
 </html>

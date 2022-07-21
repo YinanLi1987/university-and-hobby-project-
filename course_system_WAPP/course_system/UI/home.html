@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="home.css">
+    <script src="functions.js"></script>
     <title>CourseSystem</title>
 </head>
 <body onload="loadEmail();">
@@ -60,7 +61,7 @@
                     <input type="password" id="password" placeholder="Password" required name="password">
                     <label for="passwordConfirm">Password confirm</label>
                     <input type="password" id="passwordConfirm" placeholder="Password Confirm">
-                    <input type="submit" value="Sign in">
+                    <input type="submit" value="Save">
                     <input type="button" id="cancel2" value="Cancel">
                 </form>
             </div>
@@ -78,11 +79,7 @@
     </div>
 
 <script>
-    // delete the saved data in localStorage of last login
-    function loadEmail() {
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("courseNames");
-    }
+ 
    
     // pop up for login form    
     document.getElementById("login").addEventListener("click",function(){
@@ -106,27 +103,7 @@
     document.getElementById("cancel2").addEventListener("click",function(){
         document.querySelector("#signPart").style.display="none";
     })
-    //get all the courses created by the login teacher
-    function loadJason(){
-        let userEmail=localStorage.getItem("userEmail");
-        //create XHR Object
-        var xhr = new XMLHttpRequest();
-        //open -type, url/file,async
-        xhr.open("GET", 'https://stark-ridge-06549.herokuapp.com/courseinfo', true);
-        xhr.onload=function(){
-            if(this.status==200){
-                var courses=JSON.parse (this.responseText);
-                var courseNames=[];
-                for(var i in courses){
-                    if(courses[i].teacher=userEmail){
-                        courseNames.push(courses[i].coursename);
-                    }  
-                }
-                localStorage.setItem("courseNames",JSON.stringify(courseNames));
-            }
-        }
-    xhr.send();
-    }
+    
 </script>
 </body>
 </html>
