@@ -73,6 +73,6 @@ This web app is made for teachers and students to track students’ learning pro
 2.	This is the first Web APP I made all by myself, Planning, Front-end, Back-end, Testing, and Publishing. It is an acceptable result to me. The most important thing I have learned from this project is the basic process of software development and the connections between different phases.
 3.	If I have another chance to do this project again, I want to use some frames like VUE.js. I have learned a crash course on it, and I did not use it this time because I focused on getting to know all the logic clearly in the most basic way.
 4.	There are several improvements I want to make:
-> Using VUE.js frame or PHP.
-> Making relational database. The tables are separate in this version, it is OK when I create a course, but bugs will come up when deleting a course, so I did not add the ‘delete course button’ for this time.
-> Making a very detailed Design Document. At this time, I was crossing the river by feeling the stones and took many detours; the original Design Document was not clear enough for guidance.
+- Using VUE.js frame or PHP.
+- Making relational database. The tables are separate in this version, it is OK when I create a course, but bugs will come up when deleting a course, so I did not add the ‘delete course button’ for this time.
+- Making a very detailed Design Document. At this time, I was crossing the river by feeling the stones and took many detours; the original Design Document was not clear enough for guidance.
